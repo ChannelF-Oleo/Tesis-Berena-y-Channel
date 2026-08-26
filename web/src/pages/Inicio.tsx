@@ -3,6 +3,11 @@ import { Layout } from '../components/Layout';
 import { TOTAL, formatearFecha } from '../lib/datos';
 import { contar, contarBooleano, metricasTitular, porcentaje, rangoFechas } from '../lib/estadisticas';
 
+const SUSTENTANTES = [
+  { nombre: 'Channel Feliz de Oleo', matricula: '100521408', iniciales: 'CF' },
+  { nombre: 'Berena Lisbeth Figuereo Fortuna', matricula: '100437101', iniciales: 'BF' },
+];
+
 const OBJETIVOS = [
   'Clasificar los recursos léxico-sintácticos predominantes en los titulares publicados en la cuenta de Instagram del periódico.',
   'Determinar los actos de habla y los mecanismos de presuposición empleados para orientar la interpretación del lector y potenciar el engagement.',
@@ -56,6 +61,17 @@ export function Inicio() {
                 {formatearFecha(hasta)}, analizados en sus niveles sintáctico, léxico-semántico, pragmático y multimodal.
               </p>
 
+              <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 ${tenue}`}>
+                <span className={`text-[11px] font-semibold uppercase tracking-wider ${muyTenue}`}>
+                  Sustentantes
+                </span>
+                <p className={`text-base sm:text-lg font-semibold tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>
+                  Channel Feliz de Oleo
+                  <span className={`mx-2 font-normal ${muyTenue}`}>·</span>
+                  Berena Lisbeth Figuereo Fortuna
+                </p>
+              </div>
+
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href="/tabla.html"
@@ -104,7 +120,7 @@ export function Inicio() {
                   febrero 2026.
                 </p>
                 <div className={`mt-6 pt-4 border-t text-[11px] font-mono ${isDark ? 'border-white/10' : 'border-black/10'} ${muyTenue}`}>
-                  Sustentantes: Channel Feliz de Oleo · Berena Lisbeth Figuereo Fortuna — Asesora: Mtra. Alma Rosa Mejía
+                  Periodo analizado: julio 2025 – febrero 2026
                 </div>
               </div>
 
@@ -124,6 +140,48 @@ export function Inicio() {
                     </li>
                   ))}
                 </ol>
+              </div>
+            </section>
+
+            {/* Autoría */}
+            <section className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <h2 className="text-sm font-semibold uppercase tracking-wider">Autoría</h2>
+                <span className={`flex-1 h-px ${isDark ? 'bg-white/10' : 'bg-black/10'}`} />
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {SUSTENTANTES.map((persona) => (
+                  <div key={persona.matricula} className={`rounded-[24px] p-6 flex items-center gap-4 transition-all duration-300 ${tarjeta}`}>
+                    <span
+                      className={`w-14 h-14 shrink-0 rounded-2xl grid place-items-center text-lg font-black tracking-tighter ${
+                        isDark ? 'bg-white text-black' : 'bg-black text-white'
+                      }`}
+                    >
+                      {persona.iniciales}
+                    </span>
+                    <div className="min-w-0">
+                      <div className="text-lg font-bold tracking-tight leading-tight">{persona.nombre}</div>
+                      <div className={`mt-1 text-[11px] font-mono ${muyTenue}`}>
+                        Sustentante · Matrícula {persona.matricula}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                <div className={`rounded-[24px] p-6 flex items-center gap-4 transition-all duration-300 ${tarjeta}`}>
+                  <span
+                    className={`w-14 h-14 shrink-0 rounded-2xl grid place-items-center text-lg font-black tracking-tighter border ${
+                      isDark ? 'border-white/20 text-white' : 'border-black/15 text-black'
+                    }`}
+                  >
+                    AM
+                  </span>
+                  <div className="min-w-0">
+                    <div className="text-lg font-bold tracking-tight leading-tight">Mtra. Alma Rosa Mejía</div>
+                    <div className={`mt-1 text-[11px] font-mono ${muyTenue}`}>Asesora de la investigación</div>
+                  </div>
+                </div>
               </div>
             </section>
 

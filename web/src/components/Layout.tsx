@@ -108,8 +108,10 @@ export function Layout({ children }: LayoutProps) {
             isDark ? 'text-neutral-500' : 'text-neutral-500'
           }`}
         >
-          <span>Tesis de grado · Análisis de titulares periodísticos en Instagram</span>
-          <span>Muestra de 50 publicaciones · Datos propios</span>
+          <span className={isDark ? 'text-neutral-300' : 'text-neutral-700'}>
+            Channel Feliz de Oleo · Berena Lisbeth Figuereo Fortuna
+          </span>
+          <span>Tesis de grado · UASD, Escuela de Letras · Asesora: Mtra. Alma Rosa Mejía</span>
         </div>
       </footer>
     </div>
