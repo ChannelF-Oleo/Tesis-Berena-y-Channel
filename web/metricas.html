@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard de métricas — Tesis</title>
+    <meta name="description" content="Análisis lingüístico-discursivo de titulares periodísticos en Instagram — muestra de 50 publicaciones." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B0%3C/text%3E%3C/svg%3E" />
+
+    <!-- Navegación instantánea: las vistas hermanas se prerenderizan de inmediato -->
+    <script type="speculationrules">
+      {
+        "prerender": [
+          { "urls": ["/", "/tabla.html"], "eagerness": "immediate" },
+          { "where": { "href_matches": "/*" }, "eagerness": "moderate" }
+        ]
+      }
+    </script>
+
+    <script>
+      // Evita el parpadeo de tema antes de montar React.
+      (function () {
+        try {
+          var t = localStorage.getItem('tesis-theme') || 'dark';
+          document.documentElement.classList.toggle('dark', t === 'dark');
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/entries/metricas.tsx"></script>
+  </body>
+</html>

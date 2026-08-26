@@ -1,0 +1,16 @@
+# Dependencias y compilados
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Copias de seguridad locales de la muestra
+*.bak
+
+# Documentos de la tesis: se mantienen fuera del repositorio público
+*.pdf
+
+# Prototipo suelto previo a la aplicación
+1b744b64-17db-410a-ae5e-6d07c2b11ad8.tsx
+
+# Sistema
+.DS_Store
