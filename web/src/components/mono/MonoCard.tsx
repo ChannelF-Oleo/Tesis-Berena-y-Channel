@@ -13,6 +13,8 @@ export interface MonoCardProps {
   /** Pie izquierdo y derecho de la tarjeta. */
   pieIzquierda?: string;
   pieDerecha?: string;
+  /** Aclaración metodológica bajo el gráfico. */
+  nota?: string;
   /** Ocupa dos columnas de la retícula. */
   ancho?: boolean;
   /** Deja que el escenario crezca con el contenido en vez de recortarlo. */
@@ -33,6 +35,7 @@ export function MonoCard({
   unidad,
   pieIzquierda,
   pieDerecha,
+  nota,
   ancho = false,
   crecer = false,
   acciones,
@@ -81,6 +84,19 @@ export function MonoCard({
       >
         {children}
       </div>
+
+      {nota && (
+        <p
+          className={`mt-3 flex gap-1.5 text-[10px] leading-snug ${
+            isDark ? 'text-neutral-500' : 'text-neutral-500'
+          }`}
+        >
+          <span aria-hidden="true" className="shrink-0 font-mono">
+            †
+          </span>
+          <span>{nota}</span>
+        </p>
+      )}
 
       {(pieIzquierda || pieDerecha) && (
         <div

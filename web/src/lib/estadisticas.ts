@@ -43,6 +43,16 @@ export function contarMultiple(clave: keyof Registro, base = TOTAL): Conteo[] {
   })).sort(colador);
 }
 
+/**
+ * Agrupa una etiqueta base con sus variantes combinadas: «Enunciativa» reúne
+ * también «Enunciativa/Exhortativa», tal como se contabiliza en la tesis.
+ */
+export function contarAgrupado(clave: keyof Registro, base: string): Conteo {
+  const aguja = base.toLowerCase();
+  const valor = registros.filter((r) => String(r[clave] ?? '').toLowerCase().includes(aguja)).length;
+  return { nombre: base, valor, porcentaje: Math.round((valor / TOTAL) * 1000) / 10 };
+}
+
 /** Cuenta cuántos registros cumplen un criterio booleano. */
 export function contarBooleano(clave: keyof Registro): number {
   return registros.filter((r) => r[clave] === true).length;

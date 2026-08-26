@@ -15,6 +15,7 @@ import {
 import { TOTAL } from '../lib/datos';
 import {
   contar,
+  contarAgrupado,
   contarBooleano,
   contarMultiple,
   cruzar,
@@ -50,6 +51,11 @@ export function Metricas() {
   const sinEmoji = porcentaje(emojis.find((c) => c.nombre === '0')?.valor ?? 0);
   const titular = metricasTitular();
   const { desde, hasta } = rangoFechas();
+  // La tesis agrupa las variantes combinadas («Enunciativa/Exhortativa»,
+  // «Asertivo/Evaluativo») dentro de la categoría base; el dashboard cuenta la
+  // etiqueta exacta. Se muestran ambas cifras para que no parezcan discrepantes.
+  const enunciativaAgrupada = contarAgrupado('modalidad', 'Enunciativa');
+  const asertivoAgrupado = contarAgrupado('actoHabla', 'Asertivo');
   const cruce = cruzar('seccion', 'coherencia');
   const calor = matriz('seccion', 'actoHabla', 6, 5);
 
@@ -98,7 +104,7 @@ export function Metricas() {
               valor={secciones.length}
               unidad="secciones"
               datos={secciones}
-              altura={210}
+              altura={280}
               pieIzquierda={`Predominio: ${secciones[0]?.nombre ?? '—'}`}
               pieDerecha={`${secciones[0]?.porcentaje ?? 0}%`}
               ancho
@@ -124,6 +130,7 @@ export function Metricas() {
               valor={modalidades[0]?.porcentaje ?? 0}
               unidad={`% ${modalidades[0]?.nombre ?? ''}`}
               datos={modalidades}
+              nota={`Cifra exacta por etiqueta. Agrupando las variantes combinadas —«Enunciativa/Exhortativa»— la modalidad enunciativa alcanza el ${enunciativaAgrupada.porcentaje} % (${enunciativaAgrupada.valor}/${TOTAL}), que es el dato reportado en el apartado 4.3 de la tesis.`}
               pieIzquierda="Enunciativa · interrogativa · exclamativa"
               pieDerecha={`${modalidades.length} modalidades`}
             />
@@ -207,6 +214,7 @@ export function Metricas() {
               unidad={`% ${actos[0]?.nombre ?? ''}`}
               datos={actos}
               altura={200}
+              nota={`Cifra exacta por etiqueta. Agrupando las variantes combinadas —«Asertivo/Evaluativo», «Asertivo/Directivo»— el acto asertivo alcanza el ${asertivoAgrupado.porcentaje} % (${asertivoAgrupado.valor}/${TOTAL}), que es el dato reportado en el apartado 4.3 de la tesis.`}
               pieIzquierda="Searle: asertivo, directivo, expresivo…"
               pieDerecha={`${actos.length} actos`}
             />
@@ -268,7 +276,7 @@ export function Metricas() {
               valor={`${convergentes}%`}
               unidad="convergentes"
               porcentajeValor={convergentes}
-              nota="titulares convergentes"
+              etiquetaCentral="titulares convergentes"
               pieIzquierda="Relación entre gráfica y texto"
               pieDerecha={`${100 - convergentes}% divergentes`}
             />
@@ -280,7 +288,7 @@ export function Metricas() {
               valor={`${claros}%`}
               unidad="con titular claro"
               porcentajeValor={claros}
-              nota="cumplen el criterio"
+              etiquetaCentral="cumplen el criterio"
               pieIzquierda="Criterio de inclusión de la muestra"
               pieDerecha={`${contarBooleano('tieneTitularClaro')}/${TOTAL}`}
             />

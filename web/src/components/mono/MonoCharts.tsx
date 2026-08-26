@@ -33,6 +33,8 @@ interface BaseProps {
   unidad?: string;
   pieIzquierda?: string;
   pieDerecha?: string;
+  /** Aclaración metodológica bajo el gráfico. */
+  nota?: string;
   ancho?: boolean;
 }
 
@@ -49,7 +51,7 @@ export function MonoBarras({ datos, altura = 200, ...props }: BaseProps & { dato
   const [layout, setLayout] = useState<'vertical' | 'horizontal'>('horizontal');
   const isHorizontal = layout === 'horizontal';
 
-  const datosGrafico = datos.map((d) => ({ ...d, etiqueta: corto(d.nombre, isHorizontal ? 22 : 12) }));
+  const datosGrafico = datos.map((d) => ({ ...d, etiqueta: corto(d.nombre, isHorizontal ? 26 : 12) }));
 
   return (
     <MonoCard
@@ -86,13 +88,21 @@ export function MonoBarras({ datos, altura = 200, ...props }: BaseProps & { dato
         <BarChart
           data={datosGrafico}
           layout={isHorizontal ? 'vertical' : 'horizontal'}
-          margin={{ top: 12, right: 16, left: isHorizontal ? 46 : -22, bottom: 0 }}
+          margin={{ top: 12, right: 16, left: isHorizontal ? 20 : -22, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="2 2" vertical={false} stroke={rejilla(isDark)} />
           {isHorizontal ? (
             <>
               <XAxis type="number" hide />
-              <YAxis dataKey="etiqueta" type="category" width={110} tickLine={false} axisLine={false} tick={ejeTick(isDark)} />
+              <YAxis
+                dataKey="etiqueta"
+                type="category"
+                width={136}
+                interval={0}
+                tickLine={false}
+                axisLine={false}
+                tick={{ ...ejeTick(isDark), fontSize: 9 }}
+              />
             </>
           ) : (
             <>
@@ -382,7 +392,11 @@ export function MonoMosaico({ datos, ...props }: BaseProps & { datos: Conteo[] }
 /*  Medidor de arco — Mono Arc Meter                                   */
 /* ------------------------------------------------------------------ */
 
-export function MonoMedidor({ porcentajeValor, nota, ...props }: BaseProps & { porcentajeValor: number; nota?: string }) {
+export function MonoMedidor({
+  porcentajeValor,
+  etiquetaCentral,
+  ...props
+}: BaseProps & { porcentajeValor: number; etiquetaCentral?: string }) {
   const isDark = (props.theme ?? 'dark') === 'dark';
   const datos = [
     { name: 'Presente', value: porcentajeValor },
@@ -415,7 +429,9 @@ export function MonoMedidor({ porcentajeValor, nota, ...props }: BaseProps & { p
         </ResponsiveContainer>
         <div className="absolute inset-x-0 bottom-6 flex flex-col items-center pointer-events-none">
           <span className="text-2xl font-extrabold tabular-nums font-sans">{porcentajeValor}%</span>
-          {nota && <span className={`text-[10px] ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>{nota}</span>}
+          {etiquetaCentral && (
+            <span className={`text-[10px] ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>{etiquetaCentral}</span>
+          )}
         </div>
       </div>
     </MonoCard>
@@ -435,19 +451,25 @@ export function MonoMapaCalor({
 }: BaseProps & { filas: string[]; columnas: string[]; celdas: number[][]; max: number }) {
   const isDark = (props.theme ?? 'dark') === 'dark';
 
+  // Permite el corte de línea después de las barras de las etiquetas compuestas
+  // («Asertivo/Directivo») en lugar de recortarlas.
+  const divisible = (s: string) => s.replace(/\//g, '/\u200B');
+
   return (
-    <MonoCard {...props}>
+    <MonoCard {...props} crecer>
       <div className="w-full h-full overflow-x-auto">
-        <div className="min-w-[420px]">
-          <div className="grid gap-1.5" style={{ gridTemplateColumns: `110px repeat(${columnas.length}, minmax(0,1fr))` }}>
+        <div className="min-w-[560px]">
+          <div className="grid gap-1.5 items-end" style={{ gridTemplateColumns: `128px repeat(${columnas.length}, minmax(0,1fr))` }}>
             <span />
             {columnas.map((c) => (
               <span
                 key={c}
                 title={c}
-                className={`text-[9px] font-mono truncate text-center ${isDark ? 'text-neutral-500' : 'text-neutral-500'}`}
+                className={`text-[9px] font-mono leading-tight text-center break-words hyphens-none pb-0.5 ${
+                  isDark ? 'text-neutral-500' : 'text-neutral-500'
+                }`}
               >
-                {corto(c, 12)}
+                {divisible(c)}
               </span>
             ))}
 
@@ -455,9 +477,11 @@ export function MonoMapaCalor({
               <React.Fragment key={f}>
                 <span
                   title={f}
-                  className={`text-[10px] font-medium truncate self-center ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}
+                  className={`text-[10px] font-medium leading-tight break-words self-center pr-1 ${
+                    isDark ? 'text-neutral-400' : 'text-neutral-600'
+                  }`}
                 >
-                  {corto(f, 16)}
+                  {divisible(f)}
                 </span>
                 {columnas.map((c, j) => {
                   const v = celdas[i][j];
