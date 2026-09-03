@@ -53,6 +53,31 @@ export function contarAgrupado(clave: keyof Registro, base: string): Conteo {
   return { nombre: base, valor, porcentaje: Math.round((valor / TOTAL) * 1000) / 10 };
 }
 
+/**
+ * Agrupa un campo libre por la raíz de su etiqueta —la primera palabra, antes
+ * de la barra o el punto y coma— para poder agregar encuadres que, enunciados
+ * por extenso, son casi todos únicos.
+ */
+export function contarRaiz(clave: keyof Registro): Conteo[] {
+  const mapa = new Map<string, number>();
+  let conValor = 0;
+  for (const r of registros) {
+    const bruto = String(r[clave] ?? '').trim();
+    if (!bruto) continue;
+    conValor += 1;
+    const cabeza = bruto.split(/[/;]/)[0].trim().split(/\s+/)[0];
+    const raiz = cabeza.charAt(0).toUpperCase() + cabeza.slice(1);
+    mapa.set(raiz, (mapa.get(raiz) ?? 0) + 1);
+  }
+  return [...mapa]
+    .map(([nombre, valor]) => ({
+      nombre,
+      valor,
+      porcentaje: conValor === 0 ? 0 : Math.round((valor / conValor) * 1000) / 10,
+    }))
+    .sort((a, b) => b.valor - a.valor);
+}
+
 /** Cuenta cuántos registros cumplen un criterio booleano. */
 export function contarBooleano(clave: keyof Registro): number {
   return registros.filter((r) => r[clave] === true).length;
@@ -75,12 +100,14 @@ export function serieTemporal(): { label: string; valor: number }[] {
 export function cruzar(
   claveEje: keyof Registro,
   claveCapa: keyof Registro,
+  agrupar?: (valor: string) => string,
 ): { datos: Record<string, string | number>[]; capas: string[] } {
   const ejes = new Map<string, Map<string, number>>();
   const capas = new Set<string>();
   for (const r of registros) {
     const eje = String(r[claveEje] ?? '').trim();
-    const capa = String(r[claveCapa] ?? '').trim();
+    const bruto = String(r[claveCapa] ?? '').trim();
+    const capa = bruto && agrupar ? agrupar(bruto) : bruto;
     if (!eje || !capa) continue;
     capas.add(capa);
     if (!ejes.has(eje)) ejes.set(eje, new Map());
@@ -136,4 +163,15 @@ export function metricasTitular() {
 export function rangoFechas(): { desde: string; hasta: string } {
   const fechas = registros.map((r) => r.fecha).sort();
   return { desde: fechas[0], hasta: fechas[fechas.length - 1] };
+}
+
+/**
+ * Reduce las seis configuraciones de polifonía a la oposición que interesa al
+ * análisis: si el titular habla con voz propia del medio, si reproduce la de
+ * una fuente o si combina ambas.
+ */
+export function vozDominante(polifonia: string): string {
+  if (polifonia.startsWith('Voz monofónica')) return 'Voz propia del medio';
+  if (polifonia.startsWith('Discurso referido')) return 'Voz de la fuente';
+  return 'Voces combinadas';
 }

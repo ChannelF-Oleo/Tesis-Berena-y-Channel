@@ -12,13 +12,14 @@ import {
   MonoRadar,
   MonoRanking,
 } from '../components/mono/MonoCharts';
-import { TOTAL } from '../lib/datos';
+import { registros, TOTAL } from '../lib/datos';
 import {
   contar,
-  contarAgrupado,
   contarBooleano,
   contarMultiple,
+  contarRaiz,
   cruzar,
+  vozDominante,
   matriz,
   metricasTitular,
   porcentaje,
@@ -43,7 +44,8 @@ export function Metricas() {
   const captacion = contarMultiple('captacion');
   const oralidad = contarMultiple('oralidad');
   const emojis = contar('densidadEmoji');
-  const funcionEmoji = contar('funcionEmoji');
+  const encuadres = contarRaiz('funcionEncuadre');
+  const encuadresConValor = registros.filter((r) => r.funcionEncuadre).length;
   const coherencia = contar('coherencia');
   const funciones = contarMultiple('funcionDominante');
 
@@ -52,7 +54,7 @@ export function Metricas() {
   const sinEmoji = porcentaje(emojis.find((c) => c.nombre === '0')?.valor ?? 0);
   const titular = metricasTitular();
   const { desde, hasta } = rangoFechas();
-  const cruce = cruzar('seccion', 'coherencia');
+  const cruce = cruzar('seccion', 'polifonia', vozDominante);
   const calor = matriz('seccion', 'actoHablaReferido', 6, 5);
 
   return (
@@ -284,6 +286,7 @@ export function Metricas() {
               unidad="convergentes"
               porcentajeValor={convergentes}
               etiquetaCentral="titulares convergentes"
+              nota="Resultado constante: no se registró una sola divergencia entre lo que dice el titular y lo que muestra la gráfica que lo aloja."
               pieIzquierda="Relación entre gráfica y texto"
               pieDerecha={`${100 - convergentes}% divergentes`}
             />
@@ -314,13 +317,14 @@ export function Metricas() {
 
             <MonoRanking
               theme={tema}
-              eyebrow="Función del emoji"
-              badge="Semiótica"
-              valor={funcionEmoji[0]?.porcentaje ?? 0}
-              unidad={`% ${funcionEmoji[0]?.nombre ?? ''}`}
-              datos={funcionEmoji}
-              pieIzquierda="Fática, sustitutiva, modalizadora…"
-              pieDerecha={`${funcionEmoji.length} funciones`}
+              eyebrow="Encuadre temático"
+              badge="van Dijk"
+              valor={encuadres[0]?.valor ?? 0}
+              unidad={`titulares · ${encuadres[0]?.nombre ?? ''}`}
+              datos={encuadres.slice(0, 8)}
+              nota="Macroestructura semántica: el tema global bajo el que se ejerce la función. Se agrupa por la raíz de la etiqueta; los diez titulares cuya función no lleva encuadre añadido quedan fuera del recuento."
+              pieIzquierda="Raíz del encuadre declarado"
+              pieDerecha={`${encuadresConValor} de ${TOTAL} titulares`}
             />
 
             <MonoRadar
@@ -336,13 +340,14 @@ export function Metricas() {
 
             <MonoApiladas
               theme={tema}
-              eyebrow="Coherencia por sección"
+              eyebrow="Voz por sección"
               badge="Cruce"
               valor={cruce.datos.length}
               unidad="secciones cruzadas"
               datos={cruce.datos}
               capas={cruce.capas}
-              pieIzquierda="Convergente vs. divergente"
+              nota="Las seis configuraciones de polifonía se reducen aquí a la oposición que interesa: voz propia del medio, voz de la fuente citada o combinación de ambas."
+              pieIzquierda="Configuración de voces"
               pieDerecha="Apilado por sección"
               ancho
             />
