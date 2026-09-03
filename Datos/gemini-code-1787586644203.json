@@ -453,13 +453,13 @@
     "adjetivacionEspecificacion": ""
   },
   {
-    "id": "81f92c30-410a-48bf-92a1-10d90e808008",
+    "id": "3f5a0c21-9d64-4e18-b7ac-52c0e1f9a7d3",
     "codigo": "T008",
-    "fecha": "2026-02-09",
-    "tipoEntrada": "Publicación",
+    "fecha": "2025-12-22",
+    "tipoEntrada": "Reel",
     "seccion": "Social/Comunidad",
-    "titular": "EDUARDO RAMOS. Representante Asociación Dominicana de Administradoras de Riesgos de Salud (ADARS)",
-    "enlace": "https://www.instagram.com/p/DUjMT4mEhSs/",
+    "titular": "Codessd celebra su tradicional encuentro navideño",
+    "enlace": "https://www.instagram.com/reels/DSkjyC6DrZS/",
     "tieneTitularClaro": true,
     "esRepetidoSinCambios": false,
     "esComunicadoSinEstructura": false,
@@ -468,13 +468,13 @@
     "modalidad": [
       "Enunciativa"
     ],
-    "estructuraSintactica": "Nominal (sin verbo)",
+    "estructuraSintactica": "Simple",
     "sintesis": [
-      "Nominalización",
-      "Siglas y acrónimos"
+      "Siglas y acrónimos",
+      "Personificación sintáctica"
     ],
     "deixis": [
-      "Social",
+      "Institucional",
       "Temporal"
     ],
     "cargaLexica": [
@@ -482,11 +482,12 @@
     ],
     "adjetivacion": "Adjetivos calificativos",
     "figuras": [
-      "Ninguna evidente"
+      "Metonimia",
+      "Personificación"
     ],
-    "polifonia": "Voz monofónica institucional",
+    "polifonia": "Voz monofónica periodística",
     "actoHabla": [
-      "Directivo"
+      "Asertivo"
     ],
     "captacion": [
       "Promoción institucional",
@@ -499,23 +500,22 @@
     "funcionEmoji": "No aplica",
     "coherencia": "Convergente",
     "funcionDominante": [
-      "Propagandística/Persuasiva",
-      "Apelativa/Conativa",
-      "Informativa"
+      "Informativa",
+      "Propagandística/Persuasiva"
     ],
-    "funcionComunicativa": "Promocional / apelativa e informativa (convocatoria a plataforma de emisión)",
-    "interpretacion": "A diferencia de los titulares periodísticos de cobertura de hechos consumados, el texto en el arte gráfico («EDUARDO RAMOS. Representante Asociación Dominicana de Administradoras de Riesgos de Salud (ADARS)») opera como una estructura nominal de presentación de agenda. La ausencia de verbo conjugado en la tarjeta de promoción jerarquiza la identidad y autoridad del invitado, confiando la inmediatez a la deixis temporal marcada en la esquina izquierda («Lunes 09 - 5:00 PM»).\n\nEn el plano pragmático, el pie de foto (caption) complementa la gráfica activando una marcada fuerza ilocutiva directiva a través de imperativos en segunda persona («No te pierdas...», «¡Sintoniza y entérate de todo!»). La estrategia discursiva combina la promoción del medio (crossover entre Instagram y El Nuevo Diario TV) con la incompleción informativa, pues omiten los temas específicos de discusión sobre las ARS para generar expectativa en la audiencia.",
-    "observaciones": "La publicación ilustra la estrategia de autopromoción cruzada (cross-media) que ejecutan los medios tradicionales en sus redes sociales. El titular de la gráfica no busca sintetizar una noticia, sino convertir la cuenta de Instagram en un canal de captación de tráfico hacia sus programas en vivo de YouTube y redes digitales.\n\nEn el aspecto multimodal, la pieza gráfica sigue una diagramación de diseño publicitario-televisivo de alta rigidez institucional: fotografía corporativa en traje formal, paleta de colores de la identidad visual de la marca (#ElNuevoDiarioTV) e inclusión de los logotipos de las redes de transmisión (FB Live, YouTube, X, IG Live), garantizando una convergencia semántica óptima con el objetivo de convocatoria.\n\nEl copy recurre al tuteo y a formas imperativas de apelación directa que el titular, de estructura nominal de presentación, no reproduce.",
-    "seccionSecundaria": "",
+    "funcionComunicativa": "Informativa de agenda institucional / persuasiva secundaria (legitimación por tradición y proyección de cohesión gremial)",
+    "interpretacion": "El titular reproduce el patrón de la cobertura de agenda institucional: sujeto colectivo, verbo de acción en presente y complemento que nombra el acto sin describirlo. La estructura es simple y no hay verbo declarativo ni marca de atribución dentro de la unidad de análisis, de modo que el medio asume el enunciado en voz propia y la responsabilidad enunciativa recae íntegramente en el periódico.\n\nLa sigla «Codessd» concentra la operación de síntesis. Siete letras sustituyen a «Consejo de Desarrollo Económico y Social de Santo Domingo», y con ellas el titular da por conocido un referente institucional que nunca desarrolla: en los términos de la Teoría de la Relevancia, apuesta a que recuperar el referente cueste al lector menos esfuerzo que procesar el nombre completo. El sujeto así abreviado actúa además como agente de un verbo que solo ejecutan personas —«celebra»—, lo que produce la personificación sintáctica de la entidad y, por metonimia, hace que el consejo ocupe el lugar de sus miembros.\n\nEl adjetivo «tradicional» es la pieza persuasiva del enunciado: no describe el encuentro, lo legitima. Al presentarlo como repetición de una costumbre establecida, convierte un acto puntual en continuidad institucional y aporta el matiz de prestigio que sostiene la función propagandística secundaria.",
+    "observaciones": "La pieza ilustra la cobertura de agenda que el medio dedica a organismos y gremios: el titular no informa de un hecho noticioso en sentido estricto, sino que registra la actividad social de una institución. El encuadre resultante, en el sentido de van Dijk, es de cohesión gremial: la macroestructura no es «hubo un coctel» sino «el consejo mantiene y renueva sus vínculos».\n\nConviene precisar por qué la ficha no cae bajo el cuarto criterio de exclusión. El contenido es promocional en su efecto, porque proyecta la imagen de una entidad, pero no es publicidad: no hay contraprestación visible, la pieza está firmada por la redacción y el organismo promovido es un tercero y no el propio periódico. El criterio excluye la publicidad y la promoción comercial, no la cobertura de agenda institucional, que es precisamente uno de los usos del titular que esta investigación se propone describir.\n\nEn el plano multimodal la coherencia entre texto e imagen es convergente: el rótulo «NOVEDADES» sobre franja negra encabeza la tarjeta roja del titular y el Reel muestra el salón del encuentro con el logotipo del Codessd sobre la puerta y los asistentes saludándose, de modo que la gráfica documenta el mismo acto que el texto nombra.\n\nComo contexto, y fuera de la unidad de análisis, el copy amplía con la cita textual que el propio Codessd publicó en sus redes («Fue una hermosa ocasión para reunir a nuestros miembros y aliados estratégicos…»), voz institucional que el titular no reproduce.",
+    "seccionSecundaria": "Gremial",
     "actoHablaMatiz": "",
     "actoHablaReferido": "No aplica",
-    "estructuraEspecificacion": "de presentación",
-    "sintesisEspecificacion": "extrema",
-    "polifoniaEspecificacion": "",
-    "captacionEncuadre": "",
-    "funcionEncuadre": "promocional",
+    "estructuraEspecificacion": "sujeto institucional + predicado transitivo",
+    "sintesisEspecificacion": "Codessd (Consejo de Desarrollo Económico y Social de Santo Domingo)",
+    "polifoniaEspecificacion": "[Fuente contextual: comunicación institucional del Codessd]",
+    "captacionEncuadre": "Cohesión gremial / imagen institucional",
+    "funcionEncuadre": "Agenda institucional",
     "oralidadEspecificacion": "",
-    "adjetivacionEspecificacion": ""
+    "adjetivacionEspecificacion": "tradicional (matiz legitimador); navideño"
   },
   {
     "id": "90a1b2c3-511b-49cf-a3b2-20e91f909009",

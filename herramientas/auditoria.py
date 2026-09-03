@@ -55,7 +55,7 @@ EXCLAMATIVAS = re.compile(r'\b(qu[ée]|cu[áa]nto?s?|c[óo]mo|qui[ée]n|cu[áa]n
 SIGLA = re.compile(r'\b[A-ZÁÉÍÓÚÑ]{2,}\b')
 # Siglas lexicalizadas que el medio escribe en caja mixta y que, por tanto,
 # ningún patrón de mayúsculas puede reconocer (Minerd, Mescyt, Intrant…).
-SIGLAS_MIXTAS = re.compile(r'\b(Minerd|Mescyt|Intrant|Senasa|Indotel|Digesett|Inabie|Edeeste|Edesur|Edenorte)\b')
+SIGLAS_MIXTAS = re.compile(r'\b(Minerd|Mescyt|Codessd|Intrant|Senasa|Indotel|Digesett|Inabie|Edeeste|Edesur|Edenorte)\b')
 DECLARATIVO = re.compile(
     r'\b(dice|dijo|afirma|asegura|sostiene|se[ñn]ala|advierte|destaca|reitera|informa|'
     r'anuncia|explica|declara|aclara|revela|denuncia|pide|propone|critica|niega|'
