@@ -21,7 +21,7 @@ npm run preview # sirve dist/ en http://localhost:4173
 | `/`              | Inicio: título, objetivo general, objetivos específicos y cifras de la muestra.  |
 | `/tabla.html`    | Tabla de los 50 titulares. Filas desplegables con captura + ficha de análisis.   |
 | `/metricas.html` | Dashboard de estadística descriptiva con **Mono Charts**.                        |
-| `/instrumento.html` | Matriz de codificación del Capítulo III: 29 variables en 7 bloques.          |
+| `/instrumento.html` | Matriz de codificación del Capítulo III: 38 variables en 7 bloques.          |
 
 ### Navegación instantánea
 

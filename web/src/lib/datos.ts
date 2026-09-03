@@ -18,6 +18,7 @@ export const CAMPOS: CampoDef[] = [
   { clave: 'fecha', etiqueta: 'Fecha', grupo: 'Identificación' },
   { clave: 'tipoEntrada', etiqueta: 'Tipo de entrada', grupo: 'Identificación' },
   { clave: 'seccion', etiqueta: 'Sección', grupo: 'Identificación' },
+  { clave: 'seccionSecundaria', etiqueta: 'Sección secundaria', grupo: 'Identificación' },
   { clave: 'titular', etiqueta: 'Titular', grupo: 'Identificación' },
   { clave: 'enlace', etiqueta: 'Enlace', grupo: 'Identificación' },
 
@@ -29,23 +30,32 @@ export const CAMPOS: CampoDef[] = [
 
   { clave: 'modalidad', etiqueta: 'Modalidad', grupo: 'Nivel sintáctico' },
   { clave: 'estructuraSintactica', etiqueta: 'Estructura sintáctica', grupo: 'Nivel sintáctico' },
+  { clave: 'estructuraEspecificacion', etiqueta: 'Especificación de la estructura', grupo: 'Nivel sintáctico' },
   { clave: 'sintesis', etiqueta: 'Mecanismos de síntesis', grupo: 'Nivel sintáctico' },
+  { clave: 'sintesisEspecificacion', etiqueta: 'Especificación de la síntesis', grupo: 'Nivel sintáctico' },
 
   { clave: 'deixis', etiqueta: 'Deixis', grupo: 'Nivel léxico-semántico' },
   { clave: 'cargaLexica', etiqueta: 'Carga léxica', grupo: 'Nivel léxico-semántico' },
   { clave: 'adjetivacion', etiqueta: 'Adjetivación', grupo: 'Nivel léxico-semántico' },
+  { clave: 'adjetivacionEspecificacion', etiqueta: 'Especificación de la adjetivación', grupo: 'Nivel léxico-semántico' },
   { clave: 'figuras', etiqueta: 'Figuras retóricas', grupo: 'Nivel léxico-semántico' },
 
   { clave: 'polifonia', etiqueta: 'Polifonía', grupo: 'Nivel pragmático' },
-  { clave: 'actoHabla', etiqueta: 'Acto de habla', grupo: 'Nivel pragmático' },
+  { clave: 'polifoniaEspecificacion', etiqueta: 'Especificación de la polifonía', grupo: 'Nivel pragmático' },
+  { clave: 'actoHabla', etiqueta: 'Acto de habla del medio', grupo: 'Nivel pragmático' },
+  { clave: 'actoHablaMatiz', etiqueta: 'Matiz del acto de habla', grupo: 'Nivel pragmático' },
+  { clave: 'actoHablaReferido', etiqueta: 'Acto de habla referido', grupo: 'Nivel pragmático' },
   { clave: 'captacion', etiqueta: 'Estrategias de captación', grupo: 'Nivel pragmático' },
+  { clave: 'captacionEncuadre', etiqueta: 'Encuadre de la captación', grupo: 'Nivel pragmático' },
   { clave: 'oralidad', etiqueta: 'Marcas de oralidad', grupo: 'Nivel pragmático' },
+  { clave: 'oralidadEspecificacion', etiqueta: 'Especificación de la oralidad', grupo: 'Nivel pragmático' },
 
   { clave: 'densidadEmoji', etiqueta: 'Densidad de emojis', grupo: 'Multimodalidad' },
   { clave: 'funcionEmoji', etiqueta: 'Función del emoji', grupo: 'Multimodalidad' },
   { clave: 'coherencia', etiqueta: 'Coherencia texto-imagen', grupo: 'Multimodalidad' },
 
   { clave: 'funcionDominante', etiqueta: 'Funciones dominantes', grupo: 'Función comunicativa' },
+  { clave: 'funcionEncuadre', etiqueta: 'Encuadre temático', grupo: 'Función comunicativa' },
   { clave: 'funcionComunicativa', etiqueta: 'Función comunicativa', grupo: 'Función comunicativa' },
   { clave: 'interpretacion', etiqueta: 'Interpretación', grupo: 'Análisis' },
   { clave: 'observaciones', etiqueta: 'Observaciones', grupo: 'Análisis' },

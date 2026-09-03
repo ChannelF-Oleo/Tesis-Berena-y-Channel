@@ -33,8 +33,9 @@ export function Tabla() {
         r.titular.toLowerCase().includes(q) ||
         r.enlace.toLowerCase().includes(q) ||
         r.seccion.toLowerCase().includes(q) ||
-        r.modalidad.toLowerCase().includes(q) ||
-        r.actoHabla.toLowerCase().includes(q)
+        r.modalidad.join(' ').toLowerCase().includes(q) ||
+        r.actoHabla.join(' ').toLowerCase().includes(q) ||
+        r.actoHablaReferido.toLowerCase().includes(q)
       );
     });
   }, [busqueda, seccion, tipo]);

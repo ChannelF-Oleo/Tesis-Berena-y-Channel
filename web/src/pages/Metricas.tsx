@@ -30,7 +30,7 @@ export function Metricas() {
   const serie = serieTemporal();
   const secciones = contar('seccion');
   const tipos = contar('tipoEntrada');
-  const modalidades = contar('modalidad');
+  const modalidades = contarMultiple('modalidad');
   const estructuras = contar('estructuraSintactica');
   const sintesis = contarMultiple('sintesis');
   const deixis = contarMultiple('deixis');
@@ -38,7 +38,8 @@ export function Metricas() {
   const figuras = contarMultiple('figuras');
   const adjetivacion = contar('adjetivacion');
   const polifonia = contar('polifonia');
-  const actos = contar('actoHabla');
+  const actos = contarMultiple('actoHabla');
+  const actosReferidos = contar('actoHablaReferido');
   const captacion = contarMultiple('captacion');
   const oralidad = contarMultiple('oralidad');
   const emojis = contar('densidadEmoji');
@@ -51,13 +52,8 @@ export function Metricas() {
   const sinEmoji = porcentaje(emojis.find((c) => c.nombre === '0')?.valor ?? 0);
   const titular = metricasTitular();
   const { desde, hasta } = rangoFechas();
-  // La tesis agrupa las variantes combinadas («Enunciativa/Exhortativa»,
-  // «Asertivo/Evaluativo») dentro de la categoría base; el dashboard cuenta la
-  // etiqueta exacta. Se muestran ambas cifras para que no parezcan discrepantes.
-  const enunciativaAgrupada = contarAgrupado('modalidad', 'Enunciativa');
-  const asertivoAgrupado = contarAgrupado('actoHabla', 'Asertivo');
   const cruce = cruzar('seccion', 'coherencia');
-  const calor = matriz('seccion', 'actoHabla', 6, 5);
+  const calor = matriz('seccion', 'actoHablaReferido', 6, 5);
 
   return (
     <Layout>
@@ -130,7 +126,6 @@ export function Metricas() {
               valor={modalidades[0]?.porcentaje ?? 0}
               unidad={`% ${modalidades[0]?.nombre ?? ''}`}
               datos={modalidades}
-              nota={`Cifra exacta por etiqueta. Agrupando las variantes combinadas —«Enunciativa/Exhortativa»— la modalidad enunciativa alcanza el ${enunciativaAgrupada.porcentaje} % (${enunciativaAgrupada.valor}/${TOTAL}), que es el dato reportado en el apartado 4.3 de la tesis.`}
               pieIzquierda="Enunciativa · interrogativa · exclamativa"
               pieDerecha={`${modalidades.length} modalidades`}
             />
@@ -214,9 +209,21 @@ export function Metricas() {
               unidad={`% ${actos[0]?.nombre ?? ''}`}
               datos={actos}
               altura={200}
-              nota={`Cifra exacta por etiqueta. Agrupando las variantes combinadas —«Asertivo/Evaluativo», «Asertivo/Directivo»— el acto asertivo alcanza el ${asertivoAgrupado.porcentaje} % (${asertivoAgrupado.valor}/${TOTAL}), que es el dato reportado en el apartado 4.3 de la tesis.`}
               pieIzquierda="Searle: asertivo, directivo, expresivo…"
               pieDerecha={`${actos.length} actos`}
+            />
+
+            <MonoBarras
+              theme={tema}
+              eyebrow="Acto de habla referido"
+              badge="Searle"
+              valor={actosReferidos[0]?.porcentaje ?? 0}
+              unidad={`% ${actosReferidos[0]?.nombre ?? ''}`}
+              datos={actosReferidos}
+              altura={200}
+              nota="El acto del medio es casi siempre asertivo porque informa; esta variable registra el acto de la fuente citada, que es donde se distribuyen las cinco categorías de Searle."
+              pieIzquierda="Acto de la fuente citada en el titular"
+              pieDerecha={`${actosReferidos.length} valores`}
             />
 
             <MonoRanking
@@ -254,7 +261,7 @@ export function Metricas() {
 
             <MonoMapaCalor
               theme={tema}
-              eyebrow="Sección × acto de habla"
+              eyebrow="Sección × acto referido"
               badge="Mapa de calor"
               valor={calor.max}
               unidad="máximo por celda"
@@ -262,7 +269,7 @@ export function Metricas() {
               columnas={calor.columnas}
               celdas={calor.celdas}
               max={calor.max}
-              pieIzquierda="Top 6 secciones × top 5 actos"
+              pieIzquierda="Top 6 secciones × top 5 actos de la fuente"
               pieDerecha="Frecuencia cruzada"
               ancho
             />
@@ -296,12 +303,13 @@ export function Metricas() {
             <MonoDona
               theme={tema}
               eyebrow="Densidad de emojis"
-              badge="Multimodal"
+              badge="Resultado constante"
               valor={sinEmoji}
               unidad="% sin emojis"
               datos={emojis}
-              pieIzquierda="Emojis por titular"
-              pieDerecha={`${emojis.length} rangos`}
+              nota="Ningún titular del corpus incorpora emojis. El medio sí los emplea en el copy de la publicación, pero no los traslada a la gráfica del titular, que es la unidad de análisis."
+              pieIzquierda="Emojis en el texto del titular"
+              pieDerecha="0 de 50"
             />
 
             <MonoRanking

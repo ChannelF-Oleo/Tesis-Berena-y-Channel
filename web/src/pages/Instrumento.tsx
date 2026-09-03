@@ -1,7 +1,7 @@
 import { CheckSquare, ChevronRight, Square } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { BotonCopiar } from '../components/BotonCopiar';
-import { ETIQUETA_TIPO, INSTRUMENTO, TOTAL_VARIABLES } from '../lib/instrumento';
+import { ETIQUETA_TIPO, INSTRUMENTO, TOTAL_NUEVAS, TOTAL_VARIABLES, UNIDAD_ANALISIS } from '../lib/instrumento';
 import type { SeccionInstrumento, Variable } from '../lib/instrumento';
 import { TOTAL } from '../lib/datos';
 
@@ -42,9 +42,10 @@ export function Instrumento() {
                   <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Instrumento de análisis</h1>
                   <p className={`text-sm leading-relaxed ${tenue}`}>
                     Matriz de codificación del Capítulo III, aplicada a cada una de las {TOTAL} publicaciones del
-                    corpus. Reúne {TOTAL_VARIABLES} variables organizadas en {INSTRUMENTO.length} bloques: identificación,
-                    validación del corpus, las cuatro categorías de análisis que operativizan los objetivos específicos
-                    y el cierre interpretativo.
+                    corpus. Reúne {TOTAL_VARIABLES} variables en {INSTRUMENTO.length} bloques: identificación, validación
+                    del corpus, las cuatro categorías que operativizan los objetivos específicos y el cierre
+                    interpretativo. {TOTAL_NUEVAS} de ellas se incorporaron tras auditar la muestra, para separar la
+                    categoría cerrada de su especificación concreta.
                   </p>
                 </div>
                 <BotonCopiar
@@ -57,9 +58,21 @@ export function Instrumento() {
               </div>
 
               <div className={`flex flex-wrap gap-x-6 gap-y-2 text-[11px] font-mono ${muyTenue}`}>
-                <span>Unidad de análisis: el titular de cada publicación</span>
                 <span>{TOTAL_VARIABLES} variables</span>
+                <span>{TOTAL_NUEVAS} incorporadas tras la auditoría</span>
                 <span>{TOTAL} fichas codificadas</span>
+              </div>
+
+              <div
+                className={`rounded-[24px] p-5 sm:p-6 border-l-[3px] ${
+                  isDark ? 'bg-white/[0.04] border-l-white' : 'bg-black/[0.03] border-l-black'
+                }`}
+              >
+                <span className={`text-[10px] font-semibold uppercase tracking-wider ${muyTenue}`}>
+                  {UNIDAD_ANALISIS.titulo}
+                </span>
+                <p className="mt-2 text-sm leading-relaxed">{UNIDAD_ANALISIS.cuerpo}</p>
+                <p className={`mt-2 text-sm leading-relaxed ${tenue}`}>{UNIDAD_ANALISIS.corolario}</p>
               </div>
             </header>
 
@@ -168,7 +181,18 @@ function VariableFicha({ variable, theme }: { variable: Variable; theme: Tema })
               <CheckSquare className={`w-4 h-4 mt-0.5 shrink-0 ${isDark ? 'text-white' : 'text-black'}`} />
             ))}
           <div className="min-w-0">
-            <h3 className="text-[13px] font-semibold leading-snug">{variable.etiqueta}</h3>
+            <h3 className="text-[13px] font-semibold leading-snug">
+              {variable.etiqueta}
+              {variable.nueva && (
+                <span
+                  className={`ml-2 inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono align-middle border ${
+                    isDark ? 'bg-white text-black border-white' : 'bg-black text-white border-black'
+                  }`}
+                >
+                  nueva
+                </span>
+              )}
+            </h3>
             {variable.ayuda && <p className={`mt-1 text-[11px] leading-snug ${tenue}`}>{variable.ayuda}</p>}
           </div>
         </div>
@@ -190,18 +214,36 @@ function VariableFicha({ variable, theme }: { variable: Variable; theme: Tema })
       </div>
 
       {variable.opciones && (
-        <div className="mt-2.5 flex flex-wrap gap-1.5">
-          {variable.opciones.map((o) => (
-            <span
-              key={o}
-              className={`px-2 py-0.5 rounded-full text-[11px] border ${
-                isDark ? 'bg-white/5 border-white/10 text-neutral-300' : 'bg-white border-black/10 text-neutral-700'
-              }`}
-            >
-              {o}
-            </span>
-          ))}
-        </div>
+        <>
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            {variable.opciones.map((o) => {
+              const vacia = variable.noObservadas?.includes(o);
+              return (
+                <span
+                  key={o}
+                  title={vacia ? 'Opción definida que ningún titular de la muestra recibió' : undefined}
+                  className={`px-2 py-0.5 rounded-full text-[11px] border ${
+                    vacia
+                      ? isDark
+                        ? 'border-dashed border-white/20 text-neutral-500'
+                        : 'border-dashed border-black/20 text-neutral-400'
+                      : isDark
+                        ? 'bg-white/5 border-white/10 text-neutral-300'
+                        : 'bg-white border-black/10 text-neutral-700'
+                  }`}
+                >
+                  {o}
+                  {vacia && <span className="ml-1 opacity-60">·0</span>}
+                </span>
+              );
+            })}
+          </div>
+          {variable.noObservadas && variable.noObservadas.length > 0 && (
+            <p className={`mt-2 text-[10px] leading-snug ${muyTenue}`}>
+              Las opciones con borde discontinuo se conservan en el instrumento pero no aparecieron en esta muestra.
+            </p>
+          )}
+        </>
       )}
     </div>
   );
