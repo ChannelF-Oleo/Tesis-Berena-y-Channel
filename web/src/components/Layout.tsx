@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart3, Home, Moon, Sun, Table2 } from 'lucide-react';
+import { BarChart3, ClipboardList, Home, Moon, Sun, Table2 } from 'lucide-react';
 import { useTema } from '../hooks/useTema';
 import type { Tema } from '../hooks/useTema';
 
@@ -7,6 +7,7 @@ const ENLACES = [
   { href: '/', etiqueta: 'Inicio', icono: Home },
   { href: '/tabla.html', etiqueta: 'Tabla', icono: Table2 },
   { href: '/metricas.html', etiqueta: 'Métricas', icono: BarChart3 },
+  { href: '/instrumento.html', etiqueta: 'Instrumento', icono: ClipboardList },
 ];
 
 function esActivo(href: string): boolean {

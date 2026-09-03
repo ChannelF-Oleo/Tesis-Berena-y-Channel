@@ -14,3 +14,6 @@ dist/
 
 # Sistema
 .DS_Store
+
+# Documento de la tesis: se mantiene fuera del repositorio público
+*.docx

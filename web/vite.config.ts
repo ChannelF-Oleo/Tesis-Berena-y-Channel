@@ -14,6 +14,7 @@ export default defineConfig({
         home: resolve(__dirname, 'index.html'),
         tabla: resolve(__dirname, 'tabla.html'),
         metricas: resolve(__dirname, 'metricas.html'),
+        instrumento: resolve(__dirname, 'instrumento.html'),
       },
     },
   },

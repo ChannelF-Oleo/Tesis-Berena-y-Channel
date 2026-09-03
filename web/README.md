@@ -21,12 +21,13 @@ npm run preview # sirve dist/ en http://localhost:4173
 | `/`              | Inicio: título, objetivo general, objetivos específicos y cifras de la muestra.  |
 | `/tabla.html`    | Tabla de los 50 titulares. Filas desplegables con captura + ficha de análisis.   |
 | `/metricas.html` | Dashboard de estadística descriptiva con **Mono Charts**.                        |
+| `/instrumento.html` | Matriz de codificación del Capítulo III: 29 variables en 7 bloques.          |
 
 ### Navegación instantánea
 
 Es un sitio **multipágina** (una entrada HTML por vista). Cada `<head>` incluye
-`<script type="speculationrules">` que **prerenderiza** las otras dos vistas en cuanto carga la
-actual, así que al pulsar el navbar la página ya está lista. En navegadores sin soporte
+`<script type="speculationrules">` que **prerenderiza** de inmediato las dos vistas hermanas más
+probables y, con `eagerness: moderate`, cualquier otra al pasar el cursor por su enlace, así que al pulsar el navbar la página ya está lista. En navegadores sin soporte
 (Firefox, Safari) la navegación es la normal, sin degradación visual.
 
 ## Actualizar los datos
@@ -73,9 +74,9 @@ web/
 ├── public/capturas -> ../../Captura Titulares
 └── src/
     ├── entries/     puntos de montaje de React (uno por página)
-    ├── pages/       Inicio · Tabla · Metricas
+    ├── pages/       Inicio · Tabla · Metricas · Instrumento
     ├── components/  Layout, BotonCopiar y mono/ (Mono Charts adaptados)
     ├── hooks/       useTema, useCopiar, useIsMobile
-    ├── lib/         datos.ts (carga y campos), estadisticas.ts, tipos.ts
+    ├── lib/         datos.ts (carga y campos), estadisticas.ts, instrumento.ts, tipos.ts
     └── data/muestra.json -> ../../../Datos/gemini-code-*.json
 ```
