@@ -1,10 +1,10 @@
 import type { Registro } from './tipos';
 
 /**
- * Instrumento de análisis del Capítulo III, en su versión ampliada tras la
- * auditoría de la muestra. Las listas cerradas incorporan las categorías que el
- * corpus demostró necesarias; las opciones definidas que no aparecieron en esta
- * muestra se conservan marcadas como no observadas.
+ * Instrumento de análisis del Capítulo III. Cada bloque operativiza uno de los
+ * objetivos específicos de la investigación. Las opciones definidas que ningún
+ * titular de la muestra recibió se marcan como no observadas: forman parte del
+ * instrumento y su ausencia es, en sí misma, un resultado.
  */
 
 export type TipoVariable = 'unica' | 'multiple' | 'libre' | 'criterio' | 'fecha' | 'enlace';
@@ -17,8 +17,6 @@ export interface Variable {
   opciones?: string[];
   /** Opciones del instrumento que ningún titular de la muestra recibió. */
   noObservadas?: string[];
-  /** Variable incorporada tras la auditoría. */
-  nueva?: boolean;
   excluye?: boolean;
 }
 
@@ -62,7 +60,7 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
         etiqueta: 'Tipo de entrada',
         tipo: 'unica',
         opciones: ['Publicación', 'Reel', 'Carrusel'],
-        ayuda: 'La opción «Video» se retiró del instrumento: Instagram fusionó ese formato dentro de Reels en 2022, de modo que no puede darse en el periodo estudiado.',
+        ayuda: 'Instagram fusionó el formato de video dentro de Reels en 2022, de modo que en el periodo estudiado solo se dan estos tres formatos.',
       },
       {
         clave: 'seccion',
@@ -71,17 +69,17 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
         opciones: [
           'Política', 'Económica', 'Social/Comunidad', 'Judicial', 'Cultural', 'Deportiva',
           'Tecnológica', 'Científica', 'Ambiental', 'Internacional', 'Entretenimiento',
-          'Educativa', 'Nacionales', 'Opinión', 'Interés general',
+          'Educativa', 'Opinión', 'Interés general',
         ],
+        ayuda: 'Ámbito temático al que pertenece el hecho narrado. Por tratarse de un diario de circulación nacional, «Internacional» marca la procedencia del hecho y el resto de categorías se reparte el ámbito nacional por materia.',
         noObservadas: ['Cultural', 'Tecnológica', 'Científica', 'Opinión', 'Interés general'],
       },
       {
         clave: 'seccionSecundaria',
         etiqueta: 'Sección temática secundaria',
         tipo: 'unica',
-        nueva: true,
-        ayuda: 'Se registra cuando la publicación cruza dos ámbitos. Antes se codificaba fundida con la dominante («Economía/Turismo»), lo que impedía agregar por sección.',
-        opciones: ['Finanzas', 'Turismo', 'Cultural', 'Gremial', 'Humanas', 'Corporativo'],
+        ayuda: 'Se registra cuando el titular cruza dos ámbitos, para que la sección dominante siga siendo agregable.',
+        opciones: ['Finanzas', 'Turismo', 'Cultural', 'Gremial', 'Humanas', 'Corporativo', 'Seguridad ciudadana'],
       },
       { clave: 'enlace', etiqueta: 'Enlace directo (Instagram)', tipo: 'enlace' },
       {
@@ -134,7 +132,6 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
         clave: 'estructuraEspecificacion',
         etiqueta: 'Especificación de la estructura',
         tipo: 'libre',
-        nueva: true,
         ayuda: 'Matiz concreto: «con cita directa», «coordinada copulativa», «forma impersonal».',
       },
       {
@@ -146,7 +143,7 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
           'Partidaria', 'Penal', 'Valorativa', 'Continental', 'Ninguna evidente',
         ],
         noObservadas: ['Ninguna evidente'],
-        ayuda: '«Institucional» y «Geopolítica» se incorporaron tras la auditoría: la primera es la marca deíctica más frecuente de todo el corpus.',
+        ayuda: 'La deixis institucional —siglas de organismos, cargos, entidades— es la marca más frecuente del corpus: sitúa al lector en el aparato del Estado sin nombrarlo.',
       },
       {
         clave: 'cargaLexica',
@@ -163,7 +160,7 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
         tipo: 'unica',
         opciones: ['Adjetivos calificativos', 'Adjetivos valorativos', 'Ninguna dominante'],
       },
-      { clave: 'adjetivacionEspecificacion', etiqueta: 'Especificación de la adjetivación', tipo: 'libre', nueva: true },
+      { clave: 'adjetivacionEspecificacion', etiqueta: 'Especificación de la adjetivación', tipo: 'libre' },
       {
         clave: 'sintesis',
         etiqueta: 'Fenómenos de síntesis',
@@ -184,7 +181,6 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
         clave: 'sintesisEspecificacion',
         etiqueta: 'Especificación de la síntesis',
         tipo: 'libre',
-        nueva: true,
         ayuda: 'Instancia concreta: la sigla desarrollada (PLD, USCIS), la palabra elidida, la expresión condensada.',
       },
       {
@@ -219,7 +215,6 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
         clave: 'polifoniaEspecificacion',
         etiqueta: 'Especificación de la polifonía',
         tipo: 'libre',
-        nueva: true,
         ayuda: 'Fuente concreta y verbo empleado: «cita presidencial», «fuente judicial», «agencia internacional (AFP)».',
       },
       {
@@ -234,16 +229,14 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
         clave: 'actoHablaMatiz',
         etiqueta: 'Matiz del acto de habla',
         tipo: 'libre',
-        nueva: true,
         ayuda: 'Valor añadido ajeno a la taxonomía de Searle: «con carga evaluativa», «con valor admonitorio».',
       },
       {
         clave: 'actoHablaReferido',
         etiqueta: 'Acto de habla referido',
         tipo: 'unica',
-        nueva: true,
         opciones: ['Asertivo', 'Directivo', 'Expresivo', 'Compromisorio', 'Declarativo', 'No aplica'],
-        ayuda: 'Acto de la fuente citada, distinto del acto del medio. El periódico siempre informa —es asertivo—, pero la fuente que cita puede prometer, pedir, agradecer o declarar. Sin esta variable, tres de las cinco categorías de Searle quedaban vacías.',
+        ayuda: 'Acto de la fuente citada, distinto del acto del medio. El periódico siempre informa —es asertivo—, pero la fuente que cita puede prometer, pedir, agradecer o declarar.',
       },
       {
         clave: 'captacion',
@@ -261,7 +254,6 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
         clave: 'captacionEncuadre',
         etiqueta: 'Encuadre temático de la captación',
         tipo: 'libre',
-        nueva: true,
         ayuda: 'Tema con el que se ejerce la estrategia («escándalo político», «rivalidad deportiva»). Es macroestructura semántica del ACD, no una estrategia en sí.',
       },
     ],
@@ -289,7 +281,6 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
         clave: 'oralidadEspecificacion',
         etiqueta: 'Especificación de la oralidad',
         tipo: 'libre',
-        nueva: true,
         ayuda: 'La expresión concreta registrada: «de milagro», «tarde o temprano».',
       },
     ],
@@ -341,12 +332,12 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
           'Propagandística/Persuasiva', 'Interactiva (engagement)',
         ],
         noObservadas: ['Fática'],
+        ayuda: '«Fática» e «Interactiva» no son sinónimos. La fática de Jakobson tiene por foco el canal: abre, mantiene o verifica el contacto sin aportar contenido («¿me escuchas?»). La interactiva tiene por foco la relación: pide una opinión, una respuesta o una acción, y suma a lo fático lo conativo y lo expresivo. Toda función interactiva contiene un componente fático, pero no toda función fática es interactiva.',
       },
       {
         clave: 'funcionEncuadre',
         etiqueta: 'Encuadre temático',
         tipo: 'libre',
-        nueva: true,
         ayuda: 'Tema global bajo el que se ejerce la función: «fiscalización política», «agenda gubernamental». Macroestructura semántica en el sentido de van Dijk.',
       },
       {
@@ -362,4 +353,3 @@ export const INSTRUMENTO: SeccionInstrumento[] = [
 ];
 
 export const TOTAL_VARIABLES = INSTRUMENTO.reduce((n, s) => n + s.variables.length, 0);
-export const TOTAL_NUEVAS = INSTRUMENTO.reduce((n, s) => n + s.variables.filter((v) => v.nueva).length, 0);

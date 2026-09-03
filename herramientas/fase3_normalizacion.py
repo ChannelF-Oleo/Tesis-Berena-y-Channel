@@ -22,7 +22,7 @@ SECCION = {
   'Social/Gremial':             ('Social/Comunidad', 'Gremial'),
   'Social/Humanas':             ('Social/Comunidad', 'Humanas'),
   'Sostenibilidad/Corporativo': ('Ambiental',        'Corporativo'),
-  # «Nacionales» queda pendiente de decisión: no se toca.
+  # «Nacionales» se resuelve aparte, en fase8_secciones.py.
 }
 
 # ── Fase 6 · modalidad como selección múltiple ────────────────────────────

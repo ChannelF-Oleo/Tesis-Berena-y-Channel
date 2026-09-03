@@ -1,7 +1,7 @@
 import { CheckSquare, ChevronRight, Square } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { BotonCopiar } from '../components/BotonCopiar';
-import { ETIQUETA_TIPO, INSTRUMENTO, TOTAL_NUEVAS, TOTAL_VARIABLES, UNIDAD_ANALISIS } from '../lib/instrumento';
+import { ETIQUETA_TIPO, INSTRUMENTO, TOTAL_VARIABLES, UNIDAD_ANALISIS } from '../lib/instrumento';
 import type { SeccionInstrumento, Variable } from '../lib/instrumento';
 import { TOTAL } from '../lib/datos';
 
@@ -44,8 +44,7 @@ export function Instrumento() {
                     Matriz de codificación del Capítulo III, aplicada a cada una de las {TOTAL} publicaciones del
                     corpus. Reúne {TOTAL_VARIABLES} variables en {INSTRUMENTO.length} bloques: identificación, validación
                     del corpus, las cuatro categorías que operativizan los objetivos específicos y el cierre
-                    interpretativo. {TOTAL_NUEVAS} de ellas se incorporaron tras auditar la muestra, para separar la
-                    categoría cerrada de su especificación concreta.
+                    interpretativo.
                   </p>
                 </div>
                 <BotonCopiar
@@ -59,7 +58,6 @@ export function Instrumento() {
 
               <div className={`flex flex-wrap gap-x-6 gap-y-2 text-[11px] font-mono ${muyTenue}`}>
                 <span>{TOTAL_VARIABLES} variables</span>
-                <span>{TOTAL_NUEVAS} incorporadas tras la auditoría</span>
                 <span>{TOTAL} fichas codificadas</span>
               </div>
 
@@ -183,15 +181,6 @@ function VariableFicha({ variable, theme }: { variable: Variable; theme: Tema })
           <div className="min-w-0">
             <h3 className="text-[13px] font-semibold leading-snug">
               {variable.etiqueta}
-              {variable.nueva && (
-                <span
-                  className={`ml-2 inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono align-middle border ${
-                    isDark ? 'bg-white text-black border-white' : 'bg-black text-white border-black'
-                  }`}
-                >
-                  nueva
-                </span>
-              )}
             </h3>
             {variable.ayuda && <p className={`mt-1 text-[11px] leading-snug ${tenue}`}>{variable.ayuda}</p>}
           </div>

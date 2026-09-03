@@ -2803,7 +2803,8 @@
     "deixis": [
       "Social",
       "Institucional",
-      "Crítica/Ideológica"
+      "Ideológica",
+      "Valorativa"
     ],
     "cargaLexica": [
       "Estándar",
@@ -2851,7 +2852,7 @@
     "codigo": "T045",
     "fecha": "2025-12-22",
     "tipoEntrada": "Reel",
-    "seccion": "Nacionales",
+    "seccion": "Judicial",
     "titular": "Ministra Raful destaca hasta la fecha se han registrado 1,234 homicidios en el país, 81 muertes menos que el 2024",
     "enlace": "https://www.instagram.com/reels/DSk7rxSieuC/",
     "tieneTitularClaro": true,
@@ -2901,7 +2902,7 @@
     "funcionComunicativa": "Informativa de seguridad ciudadana y estadística oficial / persuasiva secundaria (encuadre positivo del balance de gestión mediante la comparación interanual)",
     "interpretacion": "El titular sobreimpreso en la tarjeta del Reel («Ministra Raful destaca hasta la fecha se han registrado 1,234 homicidios en el país, 81 muertes menos que el 2024») se organiza como una construcción bimembre yuxtapuesta en la que una proposición declarativa cargada de datos es seguida de una aposición nominal cuantitativa sin verbo. Esta segunda unidad no aporta un hecho nuevo, sino que reinterpreta la cifra anterior en clave comparativa: convierte un dato bruto de violencia letal en un indicador de mejoría.\n\nLa condensación sintáctica se apoya en la elipsis del nexo completivo («destaca [que] hasta la fecha») y en la elipsis verbal de la aposición («81 muertes menos [que las registradas en] el 2024»), recursos que permiten alojar dos cifras y una comparación interanual en un solo enunciado de tarjeta gráfica. La síntesis referencial opera por antropónimo con tratamiento institucional abreviado («Ministra Raful», sin nombre de pila ni denominación completa de la cartera), presuponiendo el reconocimiento de la funcionaria por parte de la audiencia.\n\nEn el plano de la polifonía, el verbo declarativo «destaca» introduce discurso referido indirecto y, a diferencia de un neutro «dice» o «informa», incorpora una valoración: presenta el dato como un logro subrayado por la propia fuente. A ello se suma la alternancia léxica entre «homicidios» —término del registro técnico-judicial que nombra el delito— y «muertes» en el segundo miembro, sustitución eufemística que atenúa la referencia a la violencia letal justamente en el segmento donde se comunica la reducción. La deixis es densa y triple: temporal («hasta la fecha», «el 2024»), espacial («en el país») y social (la funcionaria y su cargo).\n\nDesde la pragmática, el titular se sitúa en el polo de la referencia informativa directa: entrega ambas cifras sin ocultamiento ni suspenso, y su capacidad de captación descansa en la relevancia social del tema y en la autoridad de la fuente. No obstante, la selección del verbo valorativo, el orden de los miembros y la atenuación léxica configuran un encuadre favorable al balance oficial de gestión en materia de seguridad ciudadana, de modo que la función informativa convive con un efecto persuasivo secundario de legitimación institucional.",
     "observaciones": "La entrada, junto con la pieza registrada en T046, procede de la misma rueda de prensa del Ministerio de Interior y Policía y permite observar cómo un mismo acto de fuente se fragmenta en varias publicaciones autónomas para el feed, cada una con su propio titular-tarjeta. El contraste entre ambas es analíticamente productivo: esta pieza carece de llamada a la acción en el copy y registra menor volumen de reacciones (190 «me gusta»), mientras conserva un número elevado de comentarios (241), lo que sugiere que el tema de la seguridad ciudadana genera participación espontánea sin necesidad de mecanismos de engagement bait.\n\nEn la dimensión multimodal, la coherencia entre texto e imagen es convergente: el rótulo «NACIONALES» sobre franja negra encabeza la tarjeta roja del titular, y el video muestra a la ministra en el podio institucional flanqueada por oficiales uniformados y las banderas nacionales, con una proyección de datos al fondo. La puesta en escena de rueda de prensa oficial refuerza el estatuto estadístico del enunciado y el efecto de registro documental propio del formato Reel vertical.",
-    "seccionSecundaria": "",
+    "seccionSecundaria": "Seguridad ciudadana",
     "actoHablaMatiz": "",
     "actoHablaReferido": "Asertivo",
     "estructuraEspecificacion": "proposición declarativa + aposición nominal cuantitativa",
@@ -2917,7 +2918,7 @@
     "codigo": "T046",
     "fecha": "2025-12-22",
     "tipoEntrada": "Reel",
-    "seccion": "Nacionales",
+    "seccion": "Social/Comunidad",
     "titular": "Faride reitera se puede disfrutar con música sin molestar al vecino; seguirán incautando bocinas",
     "enlace": "https://www.instagram.com/reels/DSk-61Sibl-/",
     "tieneTitularClaro": true,
@@ -2967,7 +2968,7 @@
     "funcionComunicativa": "Informativa de orden público y convivencia ciudadana / apelativa-interactiva (captación de comentarios mediante instrucción de participación en el copy)",
     "interpretacion": "El titular sobreimpreso en la tarjeta del Reel («Faride reitera se puede disfrutar con música sin molestar al vecino; seguirán incautando bocinas») se estructura como una construcción bimembre yuxtapuesta articulada por punto y coma, donde la primera proposición recoge el mensaje conciliador de la fuente y la segunda anuncia la persistencia de la medida coercitiva. Esta disposición produce un contraste interno entre permisividad y advertencia que condensa en un solo enunciado la doble cara de la política pública sobre ruido.\n\nLa economía sintáctica se manifiesta en la elipsis del nexo completivo («reitera [que] se puede disfrutar») y en la supresión del sujeto de la segunda proposición («seguirán [las autoridades] incautando»), cuya desinencia verbal de tercera persona plural deja la agencia indeterminada y desplaza la responsabilidad hacia un actor institucional difuso. La síntesis referencial opera además por antropónimo abreviado: «Faride», nombre de pila sin apellido ni cargo, presupone un lector que identifica de inmediato a la ministra de Interior y Policía y genera un efecto de proximidad y familiaridad propio del registro mediático dominicano.\n\nEn el plano de la polifonía, el verbo declarativo «reitera» introduce discurso referido indirecto y aporta un matiz de insistencia que presupone la existencia de un debate público previo sobre la Ley de Materia Sónica. El léxico combina el registro estándar con el dominicanismo «bocinas» (por equipos de sonido o altavoces), y opera una metonimia por la cual el objeto incautado representa la totalidad del dispositivo de fiscalización sonora. La deixis social («el vecino», singular genérico) construye un destinatario colectivo con el que se invita a identificarse.\n\nDesde la pragmática, la captación no descansa en la incompleción informativa —el titular entrega ambos datos centrales— sino en la relevancia inmediata del tema para la audiencia en plena temporada navideña. A ello se suma, en el copy de la publicación, una instrucción explícita de participación («Para recibir el link de esta nota vía DM comente “Noticia” en los comentarios»), estrategia de engagement bait que condiciona el acceso al contenido ampliado a la interacción del usuario y que explica el elevado volumen de comentarios registrado (627) frente a los «me gusta» (1,973).",
     "observaciones": "La entrada documenta la convergencia entre información de orden público y diseño de interacción: el medio no se limita a difundir la declaración oficial, sino que instrumentaliza el interés social del tema mediante una llamada a la acción que traslada el tráfico del feed al mensaje directo. Este mecanismo, recurrente en el periodismo digital dominicano, altera la lógica clásica del titular como resumen autosuficiente y lo convierte en antesala de una transacción de interacción.\n\nEn la dimensión multimodal, la coherencia entre texto e imagen es convergente y refuerza la autoridad de la fuente: el rótulo «NACIONALES» sobre franja negra encabeza la tarjeta roja del titular, mientras el video muestra a la ministra en el podio del Ministerio de Interior y Policía flanqueada por oficiales uniformados de la Policía Nacional y las banderas nacionales. La puesta en escena institucional apuntala el componente admonitorio del segundo miembro del enunciado, y el formato Reel vertical con audio de rueda de prensa aporta el efecto de registro documental en directo.\n\nEl copy añade un emoji señalizador y un llamado a la acción ausentes del titular.",
-    "seccionSecundaria": "",
+    "seccionSecundaria": "Seguridad ciudadana",
     "actoHablaMatiz": "con valor admonitorio en la segunda proposición",
     "actoHablaReferido": "Compromisorio",
     "estructuraEspecificacion": "punto y coma",

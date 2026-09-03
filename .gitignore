@@ -17,3 +17,4 @@ dist/
 
 # Documento de la tesis: se mantiene fuera del repositorio público
 *.docx
+__pycache__/
