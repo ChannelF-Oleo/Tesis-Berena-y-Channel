@@ -166,12 +166,14 @@ export function rangoFechas(): { desde: string; hasta: string } {
 }
 
 /**
- * Reduce las seis configuraciones de polifonía a la oposición que interesa al
- * análisis: si el titular habla con voz propia del medio, si reproduce la de
- * una fuente o si combina ambas.
+ * Reduce las seis configuraciones de polifonía a la distinción que interesa al
+ * análisis: quién asume el enunciado. La voz institucional se mantiene aparte
+ * de la periodística porque, aunque ambas sean monofónicas, no es el medio
+ * quien habla en la primera.
  */
 export function vozDominante(polifonia: string): string {
-  if (polifonia.startsWith('Voz monofónica')) return 'Voz propia del medio';
+  if (polifonia === 'Voz monofónica periodística') return 'Voz propia del medio';
+  if (polifonia === 'Voz monofónica institucional') return 'Voz institucional';
   if (polifonia.startsWith('Discurso referido')) return 'Voz de la fuente';
   return 'Voces combinadas';
 }
