@@ -64,10 +64,14 @@ def raices(fichas: list, clave: str) -> list[tuple[str, int]]:
     return sorted(c.items(), key=lambda kv: (-kv[1], kv[0]))
 
 
-def barras(datos: list[tuple[str, int]], total: int, pie: str = '') -> str:
+def barras(datos: list[tuple[str, int]], total: int, pie: str = '',
+           tope: int | None = None, rotulo: str = '') -> str:
+    """Lista de barras. `tope` fija la escala para que dos listas contiguas
+    sean comparables entre sí y no cada una consigo misma."""
     if not datos:
         return ''
-    tope = max(v for _, v in datos)
+    tope = tope or max(v for _, v in datos)
+    cabeza = f'<p class="rotulo sub">{e(rotulo)}</p>' if rotulo else ''
     filas = []
     for nombre, valor in datos:
         pct = round(valor / total * 100)
@@ -77,7 +81,7 @@ def barras(datos: list[tuple[str, int]], total: int, pie: str = '') -> str:
             f'<span class="cifra">{valor}</span><span class="pct">{pct}%</span></div>'
         )
     cola = f'<p class="pie">{e(pie)}</p>' if pie else ''
-    return f'<div class="barras">{"".join(filas)}</div>{cola}'
+    return f'{cabeza}<div class="barras">{"".join(filas)}</div>{cola}'
 
 
 def bloque_resultado(titulo: str, cuerpo: str, sumario: str = '') -> str:
@@ -132,9 +136,11 @@ def construir(fichas: list, instrumento: list) -> str:
     res = []
     res.append(bloque_resultado(
         'Sección temática',
-        barras(conteo(fichas, 'seccion'), total)
+        barras(conteo(fichas, 'seccion'), total, rotulo='Dominante')
         + barras(conteo(fichas, 'seccionSecundaria'), total,
-                 f'Ámbito secundario, registrado en {sum(1 for f in fichas if f["seccionSecundaria"])} titulares.'),
+                 f'Solo {sum(1 for f in fichas if f["seccionSecundaria"])} titulares cruzan dos ámbitos; '
+                 f'la escala es la misma que la de la sección dominante.',
+                 tope=max(v for _, v in conteo(fichas, 'seccion')), rotulo='Secundaria'),
         'Materia del hecho narrado. La sección secundaria solo se anota cuando el titular cruza dos ámbitos.'))
     res.append(bloque_resultado('Tipo de entrada', barras(conteo(fichas, 'tipoEntrada'), total)))
     res.append(bloque_resultado(
@@ -153,8 +159,8 @@ def construir(fichas: list, instrumento: list) -> str:
         'Quién asume el enunciado. Solo cuentan las marcas presentes en el titular: una fuente citada en el copy no basta.'))
     res.append(bloque_resultado(
         'Actos de habla',
-        barras(conteo(fichas, 'actoHabla'), total, 'Acto ilocutivo del medio.')
-        + barras(conteo(fichas, 'actoHablaReferido'), total, 'Acto de la fuente citada.'),
+        barras(conteo(fichas, 'actoHabla'), total, tope=total, rotulo='Del medio')
+        + barras(conteo(fichas, 'actoHablaReferido'), total, tope=total, rotulo='De la fuente citada'),
         'El periódico casi siempre informa; la fuente a la que da voz promete, pide, agradece o declara.'))
     res.append(bloque_resultado('Estrategia de captación', barras(conteo(fichas, 'captacion'), total)))
     res.append(bloque_resultado(
@@ -162,8 +168,8 @@ def construir(fichas: list, instrumento: list) -> str:
         'El medio despliega tuteo y jerga en el copy y no los traslada a la gráfica del titular.'))
     res.append(bloque_resultado(
         'Multimodalidad',
-        barras(conteo(fichas, 'densidadEmoji'), total, 'Densidad de emojis en el texto del titular.')
-        + barras(conteo(fichas, 'coherencia'), total, 'Relación entre el titular y la imagen que lo aloja.'),
+        barras(conteo(fichas, 'densidadEmoji'), total, tope=total, rotulo='Densidad de emojis')
+        + barras(conteo(fichas, 'coherencia'), total, tope=total, rotulo='Coherencia texto–imagen'),
         'Dos resultados constantes: ningún emoji y ninguna divergencia entre texto e imagen.'))
     res.append(bloque_resultado('Función dominante', barras(conteo(fichas, 'funcionDominante'), total)))
     res.append(bloque_resultado(
@@ -285,6 +291,7 @@ PLANTILLA = '''<title>Corpus de titulares de El Nuevo Diario</title>
     margin:0 0 .3rem; letter-spacing:-.005em;
   }}
   .sumario{{font-size:.92rem; color:var(--tenue); margin:0 0 .7rem; max-width:38rem}}
+  .rotulo.sub{{margin:.55rem 0 .3rem; color:var(--muy-tenue); font-size:9.5px}}
   .barras{{display:flex; flex-direction:column; gap:.28rem; margin-bottom:.35rem}}
   .fila{{display:grid; grid-template-columns:minmax(0,15rem) 1fr 2.1rem 2.6rem; align-items:center; gap:.6rem; font-size:13.5px}}
   .fila .clave{{overflow-wrap:anywhere}}
@@ -348,6 +355,33 @@ PLANTILLA = '''<title>Corpus de titulares de El Nuevo Diario</title>
   .prosa p:last-child{{margin-bottom:0}}
 
   footer{{border-top:1px solid var(--regla); padding-top:1rem; color:var(--tenue); font-size:12.5px}}
+
+  /* ------------------------------------------------ impresión */
+  @page{{ size:A4; margin:18mm 16mm 20mm; }}
+  @media print{{
+    :root, :root[data-theme="dark"]{{
+      --papel:#fff; --tinta:#111; --tenue:#555; --muy-tenue:#777;
+      --rojo:#CE1F27; --regla:#D8D2C7; --realce:#F0EDE6; --chip:#111; --chip-tinta:#fff;
+    }}
+    *{{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }}
+    body{{ padding:0; font-size:10pt; line-height:1.5; }}
+    main{{ max-width:none; gap:1.8rem; }}
+    h1{{ font-size:26pt; }}
+    h2{{ font-size:15pt; break-after:avoid; break-before:page; }}
+    section:first-of-type h2{{ break-before:auto; }}
+    .grupo, .cabecera, .cifras{{ break-inside:avoid; }}
+    .resultado h3{{ break-after:avoid; }}
+    .fila{{ break-inside:avoid; }}
+    .cabecera{{ break-after:avoid; }}
+    .prosa h4{{ break-after:avoid; }}
+    .ficha{{ padding-top:.2rem; }}
+    .fichas{{ gap:2.2rem; }}
+    .indice a{{ break-inside:avoid; }}
+    .tarjeta{{ font-size:12.5pt; }}
+    .meta a{{ text-decoration:none; }}
+    .meta a::after{{ content:" · " attr(href); font-size:8pt; color:var(--muy-tenue); }}
+    footer{{ break-inside:avoid; }}
+  }}
 
   @media (max-width:640px){{
     .fila{{grid-template-columns:minmax(0,9.5rem) 1fr 2rem 2.4rem}}
