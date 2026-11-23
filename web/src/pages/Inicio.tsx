@@ -186,6 +186,17 @@ export function Inicio() {
                   </div>
                 ))}
 
+              </div>
+            </section>
+
+            {/* Asesoras */}
+            <section className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <h2 className="text-sm font-semibold uppercase tracking-wider">Asesoras</h2>
+                <span className={`flex-1 h-px ${isDark ? 'bg-white/10' : 'bg-black/10'}`} />
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {ASESORAS.map((asesora) => (
                   <div key={asesora.iniciales} className={`rounded-[24px] p-6 flex items-center gap-4 transition-all duration-300 ${tarjeta}`}>
                     <span
