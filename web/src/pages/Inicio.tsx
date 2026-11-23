@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, Quote, Table2 } from 'lucide-react';
+import { ArrowRight, BarChart3, Download, Quote, Table2 } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { TOTAL, formatearFecha } from '../lib/datos';
 import { contar, contarBooleano, metricasTitular, porcentaje, rangoFechas } from '../lib/estadisticas';
@@ -8,11 +8,17 @@ const SUSTENTANTES = [
   { nombre: 'Berena Lisbeth Figuereo Fortuna', matricula: '100437101', iniciales: 'BF' },
 ];
 
+const ASESORAS = [
+  { nombre: 'Mtra. Alma Rosa Mejía', iniciales: 'AM' },
+  { nombre: 'Mtra. Olga Agustín', iniciales: 'OA' },
+  { nombre: 'Dra. Yelissa M. Díaz', iniciales: 'YD' },
+];
+
 const OBJETIVOS = [
-  'Clasificar los recursos léxico-sintácticos predominantes en los titulares publicados en la cuenta de Instagram del periódico.',
-  'Determinar los actos de habla y los mecanismos de presuposición empleados para orientar la interpretación del lector y potenciar el engagement.',
-  'Identificar los rasgos de oralidad fingida y de escritura coloquial usados como estrategia de proximidad comunicativa.',
-  'Explicar la interacción entre los elementos no verbales (emojis, diseño gráfico y tipografía) y el componente lingüístico.',
+  'Clasificar los recursos léxico-sintácticos predominantes en los titulares publicados por el periódico El Nuevo Diario en su cuenta de Instagram.',
+  'Examinar los actos de habla, las presuposiciones y las inferencias contextuales empleadas para orientar la interpretación del usuario y favorecer potencialmente la captación de su atención.',
+  'Identificar los rasgos de oralidad fingida y de escritura coloquial utilizados en la redacción de los titulares como estrategia de proximidad comunicativa con el usuario.',
+  'Explicar la interacción entre los elementos no verbales (emojis, diseño gráfico y tipografía) y el componente lingüístico en la construcción de sentido del titular digital.',
 ];
 
 export function Inicio() {
@@ -47,7 +53,7 @@ export function Inicio() {
                   isDark ? 'bg-white/5 border-white/10 text-neutral-300' : 'bg-black/[0.03] border-black/10 text-neutral-700'
                 }`}
               >
-                UASD · Escuela de Letras · Licenciatura en Letras Puras
+                UASD · Facultad de Humanidades · Escuela de Letras · Licenciatura en Letras Puras
               </span>
 
               <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.08]">
@@ -58,7 +64,7 @@ export function Inicio() {
               <p className={`text-base sm:text-lg leading-relaxed ${tenue}`}>
                 El caso de su feed de Instagram (julio 2025 – febrero 2026). Esta plataforma reúne la muestra
                 codificada de la investigación: {TOTAL} titulares publicados entre el {formatearFecha(desde)} y el{' '}
-                {formatearFecha(hasta)}, analizados en sus niveles sintáctico, léxico-semántico, pragmático y multimodal.
+                {formatearFecha(hasta)}, analizados en sus niveles léxico-sintáctico, pragmático y multimodal.
               </p>
 
               <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 ${tenue}`}>
@@ -94,6 +100,18 @@ export function Inicio() {
                   <BarChart3 className="w-4 h-4" />
                   Dashboard de métricas
                 </a>
+                <a
+                  href="/tesis.docx"
+                  download
+                  className={`inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-semibold no-underline border transition-all hover:scale-[1.03] ${
+                    isDark
+                      ? 'bg-white/5 text-white border-white/15 hover:bg-white/10'
+                      : 'bg-white text-black border-black/10 hover:bg-neutral-50'
+                  }`}
+                >
+                  <Download className="w-4 h-4" />
+                  Descargar tesis (.docx)
+                </a>
               </div>
             </section>
 
@@ -115,9 +133,8 @@ export function Inicio() {
                   <span className={`text-xs font-semibold tracking-wider uppercase ${tenue}`}>Objetivo general</span>
                 </div>
                 <p className="text-lg sm:text-xl font-medium leading-relaxed tracking-tight">
-                  Identificar las principales estrategias lingüísticas y pragmáticas que configuran el discurso de los
-                  titulares en el feed de Instagram del periódico El Nuevo Diario, durante el periodo julio 2025 –
-                  febrero 2026.
+                  Analizar las estrategias lingüísticas y pragmáticas que configuran el discurso de los
+                  titulares publicados en el feed de Instagram del periódico El Nuevo Diario durante el período comprendido entre julio de 2025 y febrero de 2026.
                 </p>
                 <div className={`mt-6 pt-4 border-t text-[11px] font-mono ${isDark ? 'border-white/10' : 'border-black/10'} ${muyTenue}`}>
                   Periodo analizado: julio 2025 – febrero 2026
@@ -169,19 +186,21 @@ export function Inicio() {
                   </div>
                 ))}
 
-                <div className={`rounded-[24px] p-6 flex items-center gap-4 transition-all duration-300 ${tarjeta}`}>
-                  <span
-                    className={`w-14 h-14 shrink-0 rounded-2xl grid place-items-center text-lg font-black tracking-tighter border ${
-                      isDark ? 'border-white/20 text-white' : 'border-black/15 text-black'
-                    }`}
-                  >
-                    AM
-                  </span>
-                  <div className="min-w-0">
-                    <div className="text-lg font-bold tracking-tight leading-tight">Mtra. Alma Rosa Mejía</div>
-                    <div className={`mt-1 text-[11px] font-mono ${muyTenue}`}>Asesora de la investigación</div>
+                {ASESORAS.map((asesora) => (
+                  <div key={asesora.iniciales} className={`rounded-[24px] p-6 flex items-center gap-4 transition-all duration-300 ${tarjeta}`}>
+                    <span
+                      className={`w-14 h-14 shrink-0 rounded-2xl grid place-items-center text-lg font-black tracking-tighter border ${
+                        isDark ? 'border-white/20 text-white' : 'border-black/15 text-black'
+                      }`}
+                    >
+                      {asesora.iniciales}
+                    </span>
+                    <div className="min-w-0">
+                      <div className="text-lg font-bold tracking-tight leading-tight">{asesora.nombre}</div>
+                      <div className={`mt-1 text-[11px] font-mono ${muyTenue}`}>Asesora de la investigación</div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
             </section>
 

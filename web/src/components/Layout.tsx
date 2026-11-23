@@ -49,7 +49,7 @@ export function Layout({ children }: LayoutProps) {
                 Titulares en Instagram
               </span>
               <span className={`block text-[10px] font-mono leading-tight ${isDark ? 'text-neutral-500' : 'text-neutral-500'}`}>
-                Análisis lingüístico-discursivo
+                Estrategias lingüísticas y pragmáticas
               </span>
             </span>
           </a>
@@ -112,7 +112,7 @@ export function Layout({ children }: LayoutProps) {
           <span className={isDark ? 'text-neutral-300' : 'text-neutral-700'}>
             Channel Feliz de Oleo · Berena Lisbeth Figuereo Fortuna
           </span>
-          <span>Tesis de grado · UASD, Escuela de Letras · Asesora: Mtra. Alma Rosa Mejía</span>
+          <span>Tesis de grado · UASD, Escuela de Letras · Asesoras: Mtra. Alma Rosa Mejía, Mtra. Olga Agustín, Dra. Yelissa M. Díaz</span>
         </div>
       </footer>
     </div>
